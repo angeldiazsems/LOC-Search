@@ -1,4 +1,4 @@
-package LOC.Search.LOC.Search;
+package LOCSearch;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

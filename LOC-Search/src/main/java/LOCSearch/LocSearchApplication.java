@@ -1,4 +1,4 @@
-package LOC.Search.LOC.Search;
+package LOCSearch;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
