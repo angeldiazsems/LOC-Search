@@ -1,9 +1,13 @@
 package LOCSearch.presentation;
 import LOCSearch.repository.dto.Result;
 import LOCSearch.service.LocService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,14 +28,17 @@ public class LocController {
     }
 
     @GetMapping("/searchLocResults")
-    @ApiOperation(value = "Searches for books",
-            notes = "Response may include multiple Result values.",
-            response = Result.class,
-            responseContainer = "List")
+    @Operation(summary = "Searches for books",
+            description = "Response may include multiple Result values.")
 
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Result(s) found"),
-            @ApiResponse(code = 404, message = "Result(s) not found")
+            @ApiResponse(responseCode = "200", description = "Result(s) found ",
+            content = {@Content
+                    (mediaType="application/json",
+            schema=@Schema(implementation = Result.class))
+            }),
+            @ApiResponse(responseCode = "404", description = "Result(s) not found"),
+            @ApiResponse(responseCode = "300", description = "Result(s) not found!")
     })
     public List<Result> getResults(@RequestParam(value="q") String query){
         List<Result> results = locService.getResults(query);
