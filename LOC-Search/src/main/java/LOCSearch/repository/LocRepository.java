@@ -30,7 +30,7 @@ public class LocRepository {
                         .build()
                 )
                 .retrieve()
-                .bodyToMono(LocResponse.class)
+                .bodyToMono(String.class)//LocResponse.class)
                 .block()
                 .getResults();
     }
