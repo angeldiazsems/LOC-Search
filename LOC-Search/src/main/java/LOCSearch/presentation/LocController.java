@@ -40,6 +40,8 @@ public class LocController {
             @ApiResponse(responseCode = "404", description = "Result(s) not found"),
             @ApiResponse(responseCode = "300", description = "Result(s) not found!")
     })
+    //List<Result>
+
     public List<Result> getResults(@RequestParam(value="q") String query){
         List<Result> results = locService.getResults(query);
         if(CollectionUtils.isEmpty(results)){
